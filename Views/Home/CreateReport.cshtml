@@ -1,0 +1,77 @@
+@{
+    ViewData["Title"] = "Create Report";
+}
+
+@model ReportML.Models.ModelParams
+
+<div class="text-center">
+    <h1 class="display-4">Create Report</h1>
+</div>
+
+@if (ViewBag.Prediction != null)
+{
+    /* <div class="alert alert-info mt-4">
+        <strong>Prediction Result:</strong> @ViewBag.Prediction
+    </div> */
+        var scoredLabels = ViewBag.ScoredLabels != null ? ViewBag.ScoredLabels : 0;
+    <div class="d-flex justify-content-center align-items-center mt-4" style="background-color: lightblue; padding: 10px; border-radius: 5px;">
+        <label for="scoredLabelsSlider" class="me-3">Prediction Result: @scoredLabels</label>
+        <input type="range" id="scoredLabelsSlider" min="0" max="1000" value="@scoredLabels" class="form-range" style="width: 25%;" />
+    </div>
+}
+
+<form asp-action="CreateReport" asp-controller="Home" method="post">
+    
+    <label class="mt-4">Context Message Count</label>
+    <input class="form-control" type="number" asp-for="ContextMessageCount" value="258"/>
+
+    <label class="mt-4">Battery Voltage</label>
+    <input class="form-control" type="number" asp-for="BatteryVoltage" value="2670"/>
+
+    <label class="mt-4">Battery Voltage Loaded</label>
+    <input class="form-control" type="number" asp-for="BatteryVoltageLoaded" value="2271"/>
+
+    <label class="mt-4">Context Message Count 1</label>
+    <input class="form-control" type="number" asp-for="ContextMessageCount1" value="258"/>
+
+    <label class="mt-4">Software Version</label>
+    <input class="form-control" type="text" asp-for="SoftwareVersion" value="HB_01_00_16_42412"/>
+
+    <label class="mt-4">Firmware Version</label>
+    <input class="form-control" type="text" asp-for="FirmwareVersion" value="1.6.3"/>
+
+    <label class="mt-4">Flight Mode</label>
+    <input class="form-control" type="text" asp-for="FlightMode" value="true"/>
+
+    <label class="mt-4">GPS Mode</label>
+    <input class="form-control" type="text" asp-for="GpsMode" value="true"/>
+
+    <label class="mt-4">Movement Sensitivity</label>
+    <input class="form-control" type="text" asp-for="MovementSens" value="High"/>
+
+    <label class="mt-4">Movement Interval</label>
+    <input class="form-control" type="number" asp-for="MovementInterval" value="15"/>
+
+    <label class="mt-4">Static Interval</label>
+    <input class="form-control" type="number" asp-for="StaticInterval" value="360"/>
+
+    <label class="mt-4">Seal Detection Enabled</label>
+    <input class="form-control" type="text" asp-for="SealDetectionEnabled" value="true"/>
+
+    <label class="mt-4">Duration Threshold</label>
+    <input class="form-control" type="number" asp-for="DurationThreshold" value="80"/>
+
+    <label class="mt-4">Magnitude Threshold</label>
+    <input class="form-control" type="number" asp-for="MagnitudeThreshold" value="10000"/>
+
+    <label class="mt-4">Vdiff</label>
+    <input class="form-control" type="number" asp-for="Vdiff" value="399"/>
+
+    <label class="mt-4">Temperature Logging Interval</label>
+    <input class="form-control" type="number" asp-for="TemperatureLoggingInterval" value="15"/>
+
+    <button class="btn btn-primary mt-4" type="submit">Check prediction</button>
+</form>
+
+
+
